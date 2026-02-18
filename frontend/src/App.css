@@ -1,28 +1,24 @@
-/* App.css - Additional styles for Gaziantep Kuzu Lahmacun */
+/* App.css - Premium Dark Theme Styles */
 
-/* Ensure smooth scrolling on the whole page */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom selection color */
+/* Custom selection */
 ::selection {
-  background-color: #D4AF37;
-  color: #1A0A00;
+  background-color: #C9A84C;
+  color: #1C1C1E;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles */
 *:focus-visible {
-  outline: 2px solid #D4AF37;
+  outline: 2px solid #C9A84C;
   outline-offset: 2px;
 }
 
-/* Prevent layout shift on scroll */
-html {
-  overflow-x: hidden;
-}
-
-body {
+/* Prevent horizontal scroll */
+html, body {
   overflow-x: hidden;
 }
 
@@ -33,67 +29,37 @@ body {
   }
 }
 
-/* Animation for menu items */
-.menu-item-enter {
-  opacity: 0;
-  transform: translateY(20px);
+/* Card hover transitions */
+.card-hover {
+  transition: all 0.3s ease;
 }
 
-.menu-item-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms ease-out, transform 300ms ease-out;
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
 }
 
-/* Glassmorphism effect for header */
-.glass-header {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* Premium underline effect */
+.underline-hover {
+  position: relative;
 }
 
-/* Hero parallax effect enhancement */
-@supports (background-attachment: fixed) {
-  .hero-parallax {
-    background-attachment: fixed;
-  }
+.underline-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C9A84C;
+  transition: width 0.3s ease;
 }
 
-/* Responsive font adjustments */
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2.5rem !important;
-  }
-  
-  h2 {
-    font-size: 1.75rem !important;
-  }
+.underline-hover:hover::after {
+  width: 100%;
 }
 
-/* Card hover state enhancement */
-.card-hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(26, 10, 0, 0.15);
-}
-
-/* Gold border animation */
-@keyframes border-glow {
-  0%, 100% {
-    border-color: #D4AF37;
-  }
-  50% {
-    border-color: #F5D76E;
-  }
-}
-
-.border-glow-animation {
-  animation: border-glow 2s ease-in-out infinite;
-}
-
-/* Loading skeleton animation */
+/* Loading skeleton */
 @keyframes skeleton-loading {
   0% {
     background-position: -200% 0;
@@ -104,7 +70,7 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #F5E6D3 25%, #FDF6EC 50%, #F5E6D3 75%);
+  background: linear-gradient(90deg, #242426 25%, #2a2a2c 50%, #242426 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
 }
@@ -114,23 +80,55 @@ img {
   transition: opacity 0.3s ease;
 }
 
-img[loading] {
-  opacity: 0;
-}
-
-img:not([loading]) {
-  opacity: 1;
-}
-
 /* Print styles */
 @media print {
   .floating-buttons,
   header,
-  footer {
+  .scroll-indicator {
     display: none !important;
   }
   
   section {
     page-break-inside: avoid;
   }
+  
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.25rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Scrollbar styling for webkit */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1C1C1E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B87333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A84C;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #B87333 #1C1C1E;
 }
