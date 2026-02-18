@@ -1,34 +1,136 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* App.css - Additional styles for Gaziantep Kuzu Lahmacun */
+
+/* Ensure smooth scrolling on the whole page */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Custom selection color */
+::selection {
+  background-color: #D4AF37;
+  color: #1A0A00;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
 }
 
-.App-link {
-    color: #61dafb;
+/* Prevent layout shift on scroll */
+html {
+  overflow-x: hidden;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+body {
+  overflow-x: hidden;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+  }
+}
+
+/* Animation for menu items */
+.menu-item-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.menu-item-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+/* Glassmorphism effect for header */
+.glass-header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Hero parallax effect enhancement */
+@supports (background-attachment: fixed) {
+  .hero-parallax {
+    background-attachment: fixed;
+  }
+}
+
+/* Responsive font adjustments */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Card hover state enhancement */
+.card-hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(26, 10, 0, 0.15);
+}
+
+/* Gold border animation */
+@keyframes border-glow {
+  0%, 100% {
+    border-color: #D4AF37;
+  }
+  50% {
+    border-color: #F5D76E;
+  }
+}
+
+.border-glow-animation {
+  animation: border-glow 2s ease-in-out infinite;
+}
+
+/* Loading skeleton animation */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #F5E6D3 25%, #FDF6EC 50%, #F5E6D3 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[loading] {
+  opacity: 0;
+}
+
+img:not([loading]) {
+  opacity: 1;
+}
+
+/* Print styles */
+@media print {
+  .floating-buttons,
+  header,
+  footer {
+    display: none !important;
+  }
+  
+  section {
+    page-break-inside: avoid;
+  }
 }
