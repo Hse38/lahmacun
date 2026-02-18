@@ -34,6 +34,7 @@ if (config.enableHealthCheck) {
 
 const webpackConfig = {
   eslint: {
+    enable: process.env.DISABLE_ESLINT_PLUGIN !== "true",
     configure: {
       extends: ["plugin:react-hooks/recommended"],
       rules: {
@@ -47,6 +48,10 @@ const webpackConfig = {
       '@': path.resolve(__dirname, 'src'),
     },
     configure: (webpackConfig) => {
+      // Remove fork-ts-checker-webpack-plugin to avoid ajv/ajv-keywords conflict (project is JS, not TS)
+      webpackConfig.plugins = webpackConfig.plugins.filter(
+        (p) => p?.constructor?.name !== "ForkTsCheckerWebpackPlugin"
+      );
 
       // Add ignored patterns to reduce watched directories
         webpackConfig.watchOptions = {
