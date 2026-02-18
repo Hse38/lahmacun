@@ -1,0 +1,171 @@
+{
+  "project_metadata": {
+    "name": "Gaziantep Kuzu Lahmacun",
+    "type": "Single Page Restaurant Website",
+    "description": "Authentic Turkish lahmacun and pide restaurant in Üsküdar, Istanbul.",
+    "target_audience": "Locals in Üsküdar, tourists seeking authentic food, late-night eaters.",
+    "emotional_tone": "Warm, Authentic, Traditional, Premium yet Accessible, Appetite-inducing."
+  },
+  "design_system": {
+    "theme": "light",
+    "colors": {
+      "primary": "#C0392B",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#D4AF37",
+      "secondary_foreground": "#1A0A00",
+      "background": "#FDF6EC",
+      "foreground": "#1A0A00",
+      "muted": "#F5E6D3",
+      "muted_foreground": "#8C7B75",
+      "accent": "#D4AF37",
+      "accent_foreground": "#1A0A00",
+      "border": "#E6D5C4",
+      "input": "#E6D5C4",
+      "ring": "#C0392B"
+    },
+    "typography": {
+      "font_family_heading": "Playfair Display, serif",
+      "font_family_body": "Inter, sans-serif",
+      "scale": {
+        "h1": "text-5xl md:text-7xl font-bold tracking-tight",
+        "h2": "text-4xl md:text-5xl font-semibold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-medium",
+        "body": "text-base md:text-lg leading-relaxed",
+        "caption": "text-sm text-muted-foreground uppercase tracking-widest"
+      }
+    },
+    "spacing": {
+      "container_padding": "px-4 md:px-8 lg:px-12",
+      "section_spacing": "py-16 md:py-24",
+      "element_spacing": "gap-6 md:gap-8"
+    },
+    "visual_enhancers": {
+      "border_radius": "rounded-lg",
+      "shadows": "shadow-lg shadow-[#1A0A00]/5",
+      "textures": "Subtle grain or parchment texture overlay on background sections (opacity 0.05)."
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": "https://images.unsplash.com/photo-1590863812638-cc9ce5da2b60?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "about_chef": "https://images.pexels.com/photos/8471477/pexels-photo-8471477.jpeg",
+      "menu_feast": "https://images.unsplash.com/photo-1661685452870-e89b6e8c14fa?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "texture_spice": "https://images.unsplash.com/photo-1629029703986-e784a92521a4?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "lahmacun_close": "https://images.unsplash.com/photo-1590863812638-cc9ce5da2b60?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "pide_cheese": "https://images.unsplash.com/photo-1722239312886-c1ba4d265948?crop=entropy&cs=srgb&fm=jpg&q=85"
+    },
+    "icons": "Use lucide-react for all UI icons (Phone, MapPin, Clock, Instagram, ChevronDown, Star, etc.)"
+  },
+  "layout_structure": {
+    "header": {
+      "type": "sticky",
+      "style": "glassmorphism",
+      "elements": ["Logo (Text: Gaziantep Kuzu Lahmacun)", "Nav Links (Menu, About, Reviews, Contact)", "CTA Button (Order Online)"]
+    },
+    "hero": {
+      "style": "Full screen with parallax background image (hero_bg).",
+      "content": {
+        "headline": "Authentic Taste of Gaziantep in Üsküdar",
+        "subheadline": "Wood-fired Lahmacun & Pide crafted with heritage recipes.",
+        "cta_primary": "View Menu",
+        "cta_secondary": "Book a Table"
+      }
+    },
+    "menu_section": {
+      "component": "Shadcn Tabs",
+      "categories": ["Lahmacun", "Pide", "Kebabs", "Desserts", "Drinks"],
+      "layout": "Grid (grid-cols-1 md:grid-cols-2 lg:grid-cols-3)",
+      "card_style": "Minimalist card with image on top, title, description, and price. Hover effect: slight lift and shadow."
+    },
+    "about_section": {
+      "layout": "Two-column (Text Left, Image Right)",
+      "content": "Story of the chef/owner, emphasis on 'Kuzu' (Lamb) quality and wood fire tradition.",
+      "image": "about_chef"
+    },
+    "reviews_section": {
+      "component": "Shadcn Carousel (Embla)",
+      "style": "Auto-scrolling, infinite loop.",
+      "card_style": "Quote icon, review text, customer name, 5 stars (Gold color)."
+    },
+    "contact_section": {
+      "layout": "Grid (Map Left, Info Right)",
+      "elements": [
+        "Google Maps Iframe (Embed)",
+        "Address: Üsküdar, Istanbul",
+        "Phone Number",
+        "Opening Hours",
+        "Instagram Link"
+      ]
+    },
+    "floating_actions": {
+      "position": "fixed bottom-6 right-6 z-50",
+      "elements": ["WhatsApp Button (Green)", "Phone Button (Primary Color)"],
+      "animation": "Pulse effect on hover"
+    },
+    "footer": {
+      "style": "Dark background (#1A0A00) with Gold text.",
+      "elements": ["Copyright", "Social Links", "Quick Links"]
+    }
+  },
+  "components": {
+    "ui_library": "shadcn/ui",
+    "required_components": [
+      "Button",
+      "Tabs",
+      "Card",
+      "Carousel",
+      "Input",
+      "Textarea",
+      "Dialog (for reservations)",
+      "Sheet (for mobile menu)"
+    ],
+    "customization_rules": "Override default radius to 'rounded-lg'. Use 'Playfair Display' for all CardTitles. Use 'Inter' for CardDescription."
+  },
+  "motion_guidelines": {
+    "library": "framer-motion",
+    "rules": [
+      "Fade in elements on scroll (viewport enter).",
+      "Stagger children in grids (Menu items).",
+      "Smooth scroll for anchor links.",
+      "Parallax effect on Hero background."
+    ]
+  },
+  "seo_guidelines": {
+    "meta_tags": {
+      "title": "Gaziantep Kuzu Lahmacun | Authentic Turkish Cuisine in Üsküdar",
+      "description": "Experience the best wood-fired Lahmacun and Pide in Istanbul. Authentic Gaziantep recipes, fresh ingredients, and warm hospitality in Üsküdar."
+    },
+    "schema_markup": {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Gaziantep Kuzu Lahmacun",
+      "image": "https://images.unsplash.com/photo-1590863812638-cc9ce5da2b60",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Üsküdar",
+        "addressRegion": "Istanbul",
+        "addressCountry": "TR"
+      },
+      "servesCuisine": "Turkish"
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. Install dependencies: `npm install framer-motion lucide-react` (or yarn add).",
+    "2. Update `tailwind.config.js` with the colors defined in `design_system`.",
+    "3. Add the Google Fonts import for 'Playfair Display' and 'Inter' in `index.css`.",
+    "4. Create a `Layout` component that wraps the page and handles the sticky header and footer.",
+    "5. Build the `Hero` section using the parallax effect.",
+    "6. Implement the `Menu` using Shadcn Tabs. Mock data for menu items.",
+    "7. Build the `Reviews` section using Shadcn Carousel.",
+    "8. Add the `FloatingActions` component fixed to the bottom right.",
+    "9. Ensure all text is in Turkish (use translation tools or placeholders if needed, but headers should be Turkish/English hybrid or clear). *Correction: Problem statement says Turkish language content. Use Turkish placeholders.*",
+    "10. Add `data-testid` to all interactive elements."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do not use generic gradients. Use solid colors or subtle textures.",
+    "Ensure high contrast for text readability (WCAG AA).",
+    "Use 'Playfair Display' for all headings (h1-h3) and 'Inter' for body text.",
+    "Mobile responsiveness is priority #1. Test grid collapses.",
+    "Use `sonner` for any toast notifications (e.g., 'Table Booked')."
+  ]
+}
