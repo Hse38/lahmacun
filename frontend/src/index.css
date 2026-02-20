@@ -27,14 +27,14 @@
         --ring: 35 55% 44%;
         --radius: 0.5rem;
         
-        /* Custom Premium Colors */
-        --bg-base: #1C1C1E;
-        --bg-surface: #242426;
-        --copper: #B87333;
-        --gold: #C9A84C;
-        --gold-highlight: #E8C96B;
-        --text-primary: #F5F0E8;
-        --text-muted: #8A7F72;
+        /* Brand (logo) palette */
+        --bg-base: #181212;
+        --bg-surface: #231d1d;
+        --brand-red: #732127;
+        --accent-light: #9e3a41;
+        --text-primary: #f0ebe8;
+        --text-muted: #bcb1af;
+        --brand-grey: #695e5e;
     }
 }
 
@@ -286,6 +286,7 @@ h1, h2, h3, h4 {
 /* Print styles */
 @media print {
     .floating-buttons,
+    .floating-fab,
     .scroll-indicator {
         display: none !important;
     }
