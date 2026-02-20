@@ -133,7 +133,7 @@ const DiamondDivider = ({ className = "" }) => (
   </div>
 );
 
-// Floating Action Buttons — Location (bottom-left), WhatsApp (bottom-right), icons only
+// Floating Action Buttons — Location (bottom-left), Phone + WhatsApp (bottom-right)
 const FAB_MAPS_URL = "https://maps.google.com/?q=Ayazma+Cad+Anıl+Sk+No:15+Ünalan+Üsküdar+İstanbul";
 
 const FloatingButtons = () => {
@@ -160,6 +160,17 @@ const FloatingButtons = () => {
             aria-label="Konum"
           >
             <MapPin className="w-[18px] h-[18px] text-[#bcb1af]" />
+          </motion.a>
+          <motion.a
+            href="tel:05323016334"
+            className="floating-fab floating-fab-phone"
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            data-testid="phone-floating-btn"
+            aria-label="Ara"
+          >
+            <Phone className="w-[18px] h-[18px] text-[#bcb1af]" />
           </motion.a>
           <motion.a
             href="https://wa.me/905323016334"

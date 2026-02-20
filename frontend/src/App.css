@@ -625,13 +625,13 @@ img {
   .hero-slogan { font-size: 1.4rem; }
 }
 
-/* Hero vertical side text (left) */
+/* Hero vertical side text (left) — just above location button */
 .hero-side-text {
-  position: absolute;
-  left: 20px;
-  bottom: 50%;
-  transform: rotate(-90deg) translateX(50%);
-  transform-origin: left center;
+  position: fixed;
+  bottom: 80px;
+  left: 16px;
+  transform: rotate(-90deg);
+  transform-origin: left bottom;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -641,7 +641,7 @@ img {
   pointer-events: none;
 }
 @media (min-width: 768px) {
-  .hero-side-text { left: 28px; font-size: 0.72rem; }
+  .hero-side-text { font-size: 0.72rem; }
 }
 
 /* Farkımız — 4 feature blocks */
@@ -1238,9 +1238,24 @@ img {
   color: var(--text-primary) !important;
 }
 
+.floating-fab-phone {
+  bottom: 84px;
+  right: 20px;
+  border: 1px solid rgba(188, 177, 175, 0.3);
+}
+
+.floating-fab-phone:hover {
+  border-color: var(--accent-red);
+  transform: translateY(-2px);
+}
+
+.floating-fab-phone:hover svg {
+  color: var(--text-primary) !important;
+}
+
 .floating-fab-wa {
   bottom: 24px;
-  right: 24px;
+  right: 20px;
   border: 1px solid rgba(37, 211, 102, 0.35);
 }
 
