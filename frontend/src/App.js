@@ -235,17 +235,22 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const mainNavItems = [
+  /* Sol: Anasayfa, Menü, Hakkımızda — Ortada: marka — Sağ: Galeri, Yorumlar, Sipariş (tel), İletişim */
+  const leftNavItems = [
+    { label: "Anasayfa", href: "/" },
     { label: "Menü", href: "/menu" },
     { label: "Hakkımızda", href: "/#about" },
+  ];
+  const rightNavItems = [
+    { label: "Galeri", href: "/#gallery" },
     { label: "Yorumlar", href: "/#reviews" },
     { label: "İletişim", href: "/#contact" },
   ];
 
   const allNavItems = [
-    ...mainNavItems,
+    ...leftNavItems,
+    ...rightNavItems,
     { label: "Farkımız", href: "/#farkimiz" },
-    { label: "Galeri", href: "/#gallery" },
   ];
 
   return (
@@ -291,8 +296,8 @@ const Header = () => {
           style={{ height: `${MAIN_NAV_HEIGHT}px` }}
         >
           <div className="nav-main-inner">
-            <nav className="nav-main-links">
-              {mainNavItems.map((item) => (
+            <nav className="nav-main-left">
+              {leftNavItems.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
@@ -310,8 +315,18 @@ const Header = () => {
             </Link>
 
             <div className="nav-main-right">
+              {rightNavItems.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="nav-main-link"
+                  data-testid={`nav-${item.label.toLowerCase()}`}
+                >
+                  {item.label}
+                </Link>
+              ))}
               <a href="tel:05323016334" className="nav-main-cta" data-testid="nav-cta-btn">
-                Rezervasyon
+                Sipariş
               </a>
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <SheetTrigger asChild className="md:hidden">
@@ -338,7 +353,18 @@ const Header = () => {
                       className="nav-drawer-cta"
                       data-testid="mobile-cta-btn"
                     >
-                      Rezervasyon Yap
+                      <Phone className="w-4 h-4" />
+                      Sipariş Ver
+                    </a>
+                    <a
+                      href="https://wa.me/905323016334"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="nav-drawer-cta nav-drawer-cta-wa"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      WhatsApp
                     </a>
                   </div>
                 </SheetContent>
@@ -717,11 +743,15 @@ const ReviewsSection = () => {
           </div>
         </div>
 
-        <div className="relative flex items-start justify-center gap-4 md:gap-6 mt-8" data-testid="reviews-carousel">
-          <button type="button" onClick={goPrev} className="reviews-arrow-square" aria-label="Önceki">
-            <ChevronLeft className="w-5 h-5 text-[#bcb1af]" />
-          </button>
-
+        <div className="reviews-carousel-wrap" data-testid="reviews-carousel">
+          <div className="reviews-arrows-row">
+            <button type="button" onClick={goPrev} className="reviews-arrow-square reviews-arrow-prev" aria-label="Önceki">
+              <ChevronLeft className="w-5 h-5 text-[#bcb1af]" />
+            </button>
+            <button type="button" onClick={goNext} className="reviews-arrow-square reviews-arrow-next" aria-label="Sonraki">
+              <ChevronRight className="w-5 h-5 text-[#bcb1af]" />
+            </button>
+          </div>
           <div className="reviews-quote-block flex-1 min-w-0">
             <span className="reviews-quote-mark" aria-hidden="true">"</span>
             <AnimatePresence mode="wait">
@@ -741,10 +771,6 @@ const ReviewsSection = () => {
               <span className="reviews-quote-name">{r.name}</span>
             </div>
           </div>
-
-          <button type="button" onClick={goNext} className="reviews-arrow-square" aria-label="Sonraki">
-            <ChevronRight className="w-5 h-5 text-[#bcb1af]" />
-          </button>
         </div>
 
         <div className="flex justify-center gap-2 mt-8">
