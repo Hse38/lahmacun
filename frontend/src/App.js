@@ -127,9 +127,9 @@ const AnimatedSection = ({ children, className = "", id }) => {
 // Diamond Divider Component
 const DiamondDivider = ({ className = "" }) => (
   <div className={`flex items-center justify-center gap-4 ${className}`}>
-    <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#A61C1C]" />
-    <Diamond className="diamond-divider-icon w-3 h-3 text-[#D4AF37] fill-[#D4AF37]" />
-    <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#A61C1C]" />
+    <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#C9A227]" />
+    <Diamond className="diamond-divider-icon w-3 h-3 text-[#C9A227] fill-[#C9A227]" />
+    <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#C9A227]" />
   </div>
 );
 
@@ -394,19 +394,14 @@ const HeroSection = () => (
     className="relative min-h-screen flex items-center justify-center overflow-hidden noise-overlay"
     data-testid="hero-section"
   >
-    {/* Background */}
     <div
-      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1920&q=85')`,
+        filter: "blur(8px)",
       }}
     />
-    <div
-      className="absolute inset-0 hero-overlay"
-      style={{
-        background: "linear-gradient(to bottom, rgba(24,18,18,0.5) 0%, rgba(24,18,18,0.75) 50%, rgba(24,18,18,0.92) 100%)",
-      }}
-    />
+    <div className="absolute inset-0 hero-overlay" />
 
     {/* Vertical side text (left) */}
     <p className="hero-side-text" aria-hidden="true">10 YILLIK DENEYIM</p>
@@ -477,13 +472,13 @@ const HeroSection = () => (
     {/* Scroll Indicator */}
     <motion.a
       href="#menu"
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#bcb1af] bounce-slow"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gaziantep-muted bounce-slow"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1.2 }}
       data-testid="scroll-indicator"
     >
-      <div className="w-px h-8 bg-gradient-to-b from-[#732127] to-transparent" />
+      <div className="w-px h-8 bg-gradient-to-b from-gaziantep-gold to-transparent" />
       <ChevronDown className="w-5 h-5" />
     </motion.a>
   </section>
@@ -514,11 +509,47 @@ const FarkimizSection = () => {
     },
   ];
   return (
-    <AnimatedSection id="farkimiz" className="py-16 md:py-20 bg-[#181212] noise-overlay">
+    <AnimatedSection id="farkimiz" className="py-16 md:py-24 bg-[#1A1410] noise-overlay">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-12">
-          <DiamondDivider className="mb-4" />
-          <p className="font-['Cormorant_Garamond'] text-[#bcb1af] text-lg italic">Farkımız</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+          <motion.div
+            className="about-story-text"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-[#C9A227] text-xs uppercase tracking-[0.2em] mb-3">Hikayemiz</p>
+            <h2 className="font-['Playfair_Display',_Georgia,_serif] text-3xl md:text-4xl font-semibold text-[#F5F5F5] mb-4">
+              Gaziantep'ten Üsküdar'a Taşınan Lezzet
+            </h2>
+            <div className="w-16 h-px bg-gradient-to-r from-[#C9A227] to-transparent mb-6" />
+            <p className="text-[#E0E0E0] text-base md:text-lg leading-relaxed max-w-lg">
+              Geleneksel taş fırınımızda, Gaziantep'in eşsiz lahmacun ve pide lezzetini İstanbul'a taşıyoruz.
+              Her porsiyon ustalık ve özenle hazırlanıyor.
+            </p>
+          </motion.div>
+          <motion.div
+            className="about-story-image relative"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="relative rounded-sm overflow-hidden shadow-xl ring-1 ring-[#C9A227]/30 ring-offset-2 ring-offset-[#1A1410] about-story-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80"
+                alt="Gaziantep lahmacun ve pide"
+                className="w-full aspect-[4/3] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1410]/50 to-transparent pointer-events-none" aria-hidden="true" />
+              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 80px rgba(201,162,39,0.12)" }} aria-hidden="true" />
+            </div>
+          </motion.div>
+        </div>
+        <div className="text-center mb-10">
+          <div className="w-12 h-px bg-[#C9A227]/60 mx-auto mb-4" />
+          <p className="font-['Playfair_Display',_Georgia,_serif] text-[#B0B0B0] text-lg italic">Farkımız</p>
         </div>
         <div className="farkimiz-grid">
           {features.map((f, i) => (
@@ -532,7 +563,7 @@ const FarkimizSection = () => {
               transition={{ delay: i * 0.1 }}
             >
               <div className="farkimiz-icon-wrap">
-                <f.icon className="w-6 h-6 text-[#732127]" strokeWidth={1.5} />
+                <f.icon className="w-6 h-6 text-[#C9A227]" strokeWidth={1.5} />
               </div>
               <h3 className="farkimiz-title">{f.title}</h3>
               <p className="farkimiz-desc">{f.desc}</p>
@@ -587,7 +618,7 @@ const MenuSection = () => {
   };
 
   return (
-    <AnimatedSection id="menu" className="py-16 md:py-24 bg-[#231d1d] noise-overlay">
+    <AnimatedSection id="menu" className="py-16 md:py-24 bg-[#1B1B1B] noise-overlay">
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
         <div className="text-center mb-10">
           <DiamondDivider className="mb-4" />
@@ -689,7 +720,7 @@ const galleryImages = [
 ];
 
 const GallerySection = () => (
-  <AnimatedSection id="gallery" className="py-16 md:py-24 bg-[#0e0a0a] noise-overlay">
+  <AnimatedSection id="gallery" className="py-16 md:py-24 bg-[#141414] noise-overlay">
     <div className="max-w-6xl mx-auto px-4 md:px-8">
       <h2 className="gallery-section-title">LEZZETLERİMİZ</h2>
       <div className="gallery-masonry">
@@ -730,7 +761,7 @@ const ReviewsSection = () => {
   const goNext = () => setCurrentIndex((i) => (i >= reviews.length - 1 ? 0 : i + 1));
 
   return (
-    <AnimatedSection id="reviews" className="py-16 md:py-24 bg-[#181212] noise-overlay overflow-hidden">
+    <AnimatedSection id="reviews" className="py-16 md:py-24 bg-[#1A1410] noise-overlay overflow-hidden">
       <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8">
         <div className="text-center mb-8">
           <DiamondDivider className="mb-4" />
@@ -775,7 +806,7 @@ const ReviewsSection = () => {
               </motion.p>
             </AnimatePresence>
             <div className="reviews-quote-footer">
-              <div className="w-10 h-px bg-[#732127] mx-auto mb-3" />
+              <div className="w-10 h-px bg-[#C9A227] mx-auto mb-3" />
               <span className="reviews-quote-name">{r.name}</span>
             </div>
           </div>
@@ -799,10 +830,10 @@ const ReviewsSection = () => {
 
 // Contact Section
 const ContactSection = () => (
-  <AnimatedSection id="contact" className="py-16 md:py-24 bg-[#231d1d] noise-overlay">
+  <AnimatedSection id="contact" className="py-16 md:py-24 bg-[#1B1B1B] noise-overlay">
     <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
       <div className="text-center mb-10">
-        <h2 className="font-['Cormorant_Garamond'] section-title text-3xl md:text-5xl font-semibold mb-4" data-testid="contact-title">
+        <h2 className="font-['Playfair_Display',_Georgia,_serif] section-title text-3xl md:text-5xl font-semibold text-[#F5F5F5] mb-4" data-testid="contact-title">
           İletişim & Konum
         </h2>
         <DiamondDivider />
@@ -811,27 +842,27 @@ const ContactSection = () => (
       <div className="grid md:grid-cols-2 gap-12">
         <div className="contact-info">
           <div className="contact-item" data-testid="contact-address">
-            <Diamond className="contact-icon fill-[#732127] text-[#732127]" />
-            <p className="text-[#f0ebe8] font-['Inter']">
+            <Diamond className="contact-icon fill-[#C9A227] text-[#C9A227]" />
+            <p className="text-[#E0E0E0] font-['Inter']">
               Ayazma Cad. Anıl Sk. No:15, Ünalan, Üsküdar / İstanbul
             </p>
           </div>
           <div className="contact-item" data-testid="contact-phone">
-            <Diamond className="contact-icon fill-[#732127] text-[#732127]" />
-            <div className="text-[#f0ebe8] font-['Inter']">
+            <Diamond className="contact-icon fill-[#C9A227] text-[#C9A227]" />
+            <div className="text-[#E0E0E0] font-['Inter']">
               <p>0532 301 63 34</p>
               <p>0542 498 56 33</p>
             </div>
           </div>
           <div className="contact-item" data-testid="contact-instagram">
-            <Diamond className="contact-icon fill-[#732127] text-[#732127]" />
-            <a href="https://www.instagram.com/gaziantepkuzulahmacun" target="_blank" rel="noopener noreferrer" className="text-[#f0ebe8] hover:text-[#732127] transition-colors duration-200 font-['Inter']">
+            <Diamond className="contact-icon fill-[#C9A227] text-[#C9A227]" />
+            <a href="https://www.instagram.com/gaziantepkuzulahmacun" target="_blank" rel="noopener noreferrer" className="text-[#E0E0E0] hover:text-[#C9A227] transition-colors duration-200 font-['Inter']">
               @gaziantepkuzulahmacun
             </a>
           </div>
           <div className="contact-item" data-testid="contact-hours">
-            <Diamond className="contact-icon fill-[#732127] text-[#732127]" />
-            <p className="text-[#f0ebe8] font-['Inter']">Her gün açık — Gece 02:00'ye kadar</p>
+            <Diamond className="contact-icon fill-[#C9A227] text-[#C9A227]" />
+            <p className="text-[#E0E0E0] font-['Inter']">Her gün açık — Gece 02:00'ye kadar</p>
           </div>
           <div className="flex flex-wrap gap-3 pt-4">
             <a href="tel:05323016334" className="contact-btn" data-testid="contact-call-btn">
@@ -865,27 +896,59 @@ const ContactSection = () => (
   </AnimatedSection>
 );
 
-// Footer
-const Footer = () => (
-  <footer className="footer" data-testid="footer">
-    <div className="max-w-6xl mx-auto px-4 md:px-8 text-center">
-      <h3 className="font-['Cormorant_Garamond'] text-2xl md:text-3xl font-semibold text-[#f0ebe8] mb-4">
-        Gaziantep Kuzu Lahmacun
-      </h3>
-      <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#732127] to-transparent mx-auto mb-6" />
-      <div className="footer-social">
-        <a href="https://www.instagram.com/gaziantepkuzulahmacun" target="_blank" rel="noopener noreferrer" className="footer-social-link" data-testid="footer-instagram">
-          <Instagram className="w-4 h-4" />
+// Order CTA — conversion-focused, gold dominant
+const OrderCTASection = () => (
+  <AnimatedSection id="order-cta" className="py-16 md:py-20 bg-[#1A1410]">
+    <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
+      <h2 className="font-['Playfair_Display',_Georgia,_serif] text-3xl md:text-4xl font-semibold text-[#F5F5F5] mb-3">
+        Sipariş Verin
+      </h2>
+      <p className="text-[#E0E0E0] text-lg mb-8">
+        Hemen arayın veya WhatsApp ile siparişinizi iletin.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://wa.me/905323016334"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#C9A227] text-[#141414] font-semibold text-lg transition-transform hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(201,162,39,0.4)]"
+        >
+          <MessageCircle className="w-5 h-5" />
+          WhatsApp ile Sipariş
         </a>
-        <a href="https://wa.me/905323016334" target="_blank" rel="noopener noreferrer" className="footer-social-link" data-testid="footer-whatsapp">
-          <MessageCircle className="w-4 h-4" />
-        </a>
-        <a href="tel:05323016334" className="footer-social-link" data-testid="footer-phone">
-          <Phone className="w-4 h-4" />
+        <a
+          href="tel:05323016334"
+          className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-[#C9A227] text-[#E8D8C3] font-semibold text-lg transition-transform hover:scale-[1.03] hover:bg-[#C9A227]/10"
+        >
+          <Phone className="w-5 h-5" />
+          Hemen Ara
         </a>
       </div>
-      <p className="text-[#695e5e] text-sm mb-4">© 2025 Tüm hakları saklıdır.</p>
-      <p className="footer-seo">
+    </div>
+  </AnimatedSection>
+);
+
+// Footer
+const Footer = () => (
+  <footer className="footer bg-[#0F0F0F] border-t border-[rgba(201,162,39,0.12)]" data-testid="footer">
+    <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 text-center">
+      <h3 className="font-['Playfair_Display',_Georgia,_serif] text-2xl md:text-3xl font-semibold text-[#F5F5F5] mb-4">
+        Gaziantep Kuzu Lahmacun
+      </h3>
+      <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#C9A227] to-transparent mx-auto mb-6" />
+      <div className="footer-social flex justify-center gap-6 mb-6">
+        <a href="https://www.instagram.com/gaziantepkuzulahmacun" target="_blank" rel="noopener noreferrer" className="footer-social-link text-[#B0B0B0] hover:text-[#C9A227] transition-colors" data-testid="footer-instagram">
+          <Instagram className="w-5 h-5" />
+        </a>
+        <a href="https://wa.me/905323016334" target="_blank" rel="noopener noreferrer" className="footer-social-link text-[#B0B0B0] hover:text-[#C9A227] transition-colors" data-testid="footer-whatsapp">
+          <MessageCircle className="w-5 h-5" />
+        </a>
+        <a href="tel:05323016334" className="footer-social-link text-[#B0B0B0] hover:text-[#C9A227] transition-colors" data-testid="footer-phone">
+          <Phone className="w-5 h-5" />
+        </a>
+      </div>
+      <p className="text-[#B0B0B0] text-sm">© 2025 Tüm hakları saklıdır.</p>
+      <p className="footer-seo text-[#9A8F7E] text-xs mt-4 max-w-xl mx-auto">
         Üsküdar lahmacun | Gaziantep pide İstanbul | Gece açık restoran Üsküdar | En iyi lahmacun İstanbul | Taş fırın pide
       </p>
     </div>
@@ -904,6 +967,7 @@ const HomePage = () => (
       <GallerySection />
       <ReviewsSection />
       <ContactSection />
+      <OrderCTASection />
     </main>
     <Footer />
     <FloatingButtons />

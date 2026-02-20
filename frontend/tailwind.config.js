@@ -54,16 +54,15 @@ module.exports = {
                                 '5': 'hsl(var(--chart-5))'
                         },
                         gaziantep: {
-                                red: '#C41E1E',
-                                'red-bright': '#E8251E',
-                                gold: '#D4AF37',
-                                copper: '#C08B3E',
-                                cream: '#F5F5F5',
-                                charcoal: '#121212',
-                                surface: '#151515',
-                                elevated: '#1A1A1A',
-                                'text': '#EAEAEA',
-                                'text-muted': '#C4B8A4'
+                                charcoal: '#141414',
+                                surface: '#1B1B1B',
+                                warm: '#1A1410',
+                                gold: '#C9A227',
+                                copper: '#B87333',
+                                beige: '#E8D8C3',
+                                heading: '#F5F5F5',
+                                body: '#E0E0E0',
+                                muted: '#B0B0B0'
                         }
                 },
                 fontFamily: {
