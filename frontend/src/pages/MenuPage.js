@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Diamond, MessageCircle, ArrowLeft } from "lucide-react";
 import "@/App.css";
@@ -45,8 +46,8 @@ export const fullMenuData = [
       { name: "İçli Köfte", price: "80₺", desc: "El yapımı geleneksel tarif" },
       { name: "Patates Kızartması", price: "50₺", desc: "Çıtır çıtır" },
       { name: "Kilis Tava", price: "450₺", desc: "Kilis'in meşhur lezzeti" },
-      { name: "Patlıcan Kebap", price: "600₺", desc: "Çift kişilik, közde patlıcan" },
-      { name: "Soğan Kebap", price: "600₺", desc: "Çift kişilik, özel tarif" },
+      { name: "Patlıcan Kebap (çift kişilik)", price: "600₺", desc: "Közde patlıcan" },
+      { name: "Soğan Kebap (çift kişilik)", price: "600₺", desc: "Özel tarif" },
     ],
   },
   {
@@ -68,37 +69,114 @@ export const fullMenuData = [
   },
 ];
 
-const DiamondDividerInline = () => (
-  <div className="flex items-center justify-center gap-4 my-8">
-    <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#732127]" />
-    <Diamond className="w-3 h-3 text-[#732127] fill-[#732127]" />
-    <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#732127]" />
+const AnimatedDivider = ({ dividerRef, isVisible, dataKey }) => (
+  <div ref={dividerRef} data-divider-key={dataKey} className={`menu-page-divider ${isVisible ? "is-visible" : ""}`}>
+    <div className="menu-page-divider-line" />
+    <Diamond className="menu-page-divider-diamond w-3 h-3" />
+    <div className="menu-page-divider-line line-right" />
   </div>
 );
 
 export default function MenuPage() {
+  const headerRef = useRef(null);
+  const sectionRefs = useRef([]);
+  const dividerRefs = useRef([]);
+  const [visibleSections, setVisibleSections] = useState(new Set());
+  const [visibleDividers, setVisibleDividers] = useState(new Set());
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const key = entry.target.dataset.sectionKey;
+          if (key !== undefined) {
+            setVisibleSections((prev) => new Set(prev).add(key));
+          }
+          const divKey = entry.target.dataset.dividerKey;
+          if (divKey !== undefined) {
+            setVisibleDividers((prev) => new Set(prev).add(divKey));
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    const n = fullMenuData.length;
+    const timer = setTimeout(() => {
+      for (let i = 0; i < n; i++) {
+        if (sectionRefs.current[i]) observer.observe(sectionRefs.current[i]);
+      }
+      for (let i = 0; i <= n; i++) {
+        if (dividerRefs.current[i]) observer.observe(dividerRefs.current[i]);
+      }
+    }, 0);
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = titleRef.current;
+    if (!el) return;
+    let ticking = false;
+    const update = () => {
+      const y = window.scrollY * 0.4;
+      el.style.transform = `translateY(${y}px)`;
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="menu-page">
-      <div className="menu-page-header">
+      <div className="menu-page-header" ref={headerRef}>
         <Link to="/" className="menu-page-back">
           <ArrowLeft className="w-4 h-4" />
           Ana Sayfa
         </Link>
 
-        <DiamondDividerInline />
-        <h1 className="menu-page-title">MENÜ</h1>
+        <AnimatedDivider dividerRef={(el) => (dividerRefs.current[0] = el)} isVisible={visibleDividers.has("0")} dataKey="0" />
+        <h1 ref={titleRef} className="menu-page-title">
+          MENÜ
+        </h1>
         <p className="menu-page-subtitle">Ustaların elinden, sofranıza...</p>
         <div className="menu-page-line" />
       </div>
 
       <div className="menu-page-content">
         {fullMenuData.map((section, idx) => (
-          <section key={section.title} className="menu-page-section">
-            {idx > 0 && <DiamondDividerInline />}
-            <h2 className="menu-page-category-title">{section.title}</h2>
+          <section
+            key={section.title}
+            ref={(el) => (sectionRefs.current[idx] = el)}
+            data-section-key={section.title}
+            className={`menu-page-section ${visibleSections.has(section.title) ? "is-visible" : ""}`}
+          >
+            {idx > 0 && (
+              <AnimatedDivider
+                dividerRef={(el) => (dividerRefs.current[idx] = el)}
+                isVisible={visibleDividers.has(String(idx))}
+                dataKey={String(idx)}
+              />
+            )}
+            <h2 className={`menu-page-category-title ${visibleSections.has(section.title) ? "is-visible" : ""}`}>
+              {section.title}
+            </h2>
             <div className="menu-page-items">
               {section.items.map((item, i) => (
-                <div key={i} className="menu-page-item-row">
+                <div
+                  key={i}
+                  className="menu-page-item-row"
+                  style={{ transitionDelay: `${i * 60}ms` }}
+                >
                   <div className="menu-page-item-main">
                     <span className="menu-page-item-name">{item.name}</span>
                     <span className="menu-page-item-dots" />
@@ -113,7 +191,11 @@ export default function MenuPage() {
           </section>
         ))}
 
-        <DiamondDividerInline />
+        <AnimatedDivider
+          dividerRef={(el) => (dividerRefs.current[fullMenuData.length] = el)}
+          isVisible={visibleDividers.has(String(fullMenuData.length))}
+          dataKey={String(fullMenuData.length)}
+        />
         <div className="menu-page-footer">
           <p className="menu-page-footer-label">TARİHİ ÜSKÜDAR'DA</p>
           <p className="menu-page-footer-note">

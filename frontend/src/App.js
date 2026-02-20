@@ -589,10 +589,12 @@ const MenuSection = () => {
                   <motion.div
                     key={`${key}-${index}`}
                     variants={fadeInUp}
-                    className="menu-teaser-item"
+                    className="menu-teaser-row"
                     data-testid={`menu-item-${index}`}
                   >
-                    {item.name}
+                    <span className="menu-teaser-name">{item.name}</span>
+                    <span className="menu-teaser-dots" />
+                    <span className="menu-teaser-price">{item.price}</span>
                   </motion.div>
                 ))}
               </div>
