@@ -953,7 +953,7 @@ const Footer = () => (
           <Phone className="w-5 h-5" />
         </a>
       </div>
-      <p className="text-[#B0B0B0] text-sm">© 2025 Tüm hakları saklıdır.</p>
+      <p className="text-[#B0B0B0] text-sm">© 2026 Tüm hakları saklıdır.</p>
       <p className="footer-seo text-[#9A8F7E] text-xs mt-4 max-w-xl mx-auto">
         Üsküdar lahmacun | Gaziantep pide İstanbul | Gece açık restoran Üsküdar | En iyi lahmacun İstanbul | Taş fırın pide
       </p>
