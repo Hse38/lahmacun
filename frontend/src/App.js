@@ -220,11 +220,11 @@ const Header = () => {
         topbar.style.overflow = "hidden";
         topbar.style.paddingTop = "0";
         topbar.style.paddingBottom = "0";
-        mainnav.style.background = "rgba(10, 6, 6, 0.88)";
-        mainnav.style.backdropFilter = "blur(20px)";
-        mainnav.style.webkitBackdropFilter = "blur(20px)";
-        mainnav.style.borderBottom = "1px solid rgba(212, 175, 55, 0.15)";
-        mainnav.style.boxShadow = "0 4px 40px rgba(0, 0, 0, 0.6)";
+        mainnav.style.background = "rgba(7, 4, 4, 0.92)";
+        mainnav.style.backdropFilter = "blur(24px)";
+        mainnav.style.webkitBackdropFilter = "blur(24px)";
+        mainnav.style.borderBottom = "1px solid rgba(212, 175, 55, 0.12)";
+        mainnav.style.boxShadow = "0 4px 40px rgba(0, 0, 0, 0.7)";
       } else {
         topbar.style.height = `${NAV_TOPBAR_HEIGHT}px`;
         topbar.style.opacity = "1";
