@@ -127,9 +127,9 @@ const AnimatedSection = ({ children, className = "", id }) => {
 // Diamond Divider Component
 const DiamondDivider = ({ className = "" }) => (
   <div className={`flex items-center justify-center gap-4 ${className}`}>
-    <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#732127]" />
-    <Diamond className="w-3 h-3 text-[#732127] fill-[#732127]" />
-    <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#732127]" />
+    <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#A61C1C]" />
+    <Diamond className="diamond-divider-icon w-3 h-3 text-[#D4AF37] fill-[#D4AF37]" />
+    <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#A61C1C]" />
   </div>
 );
 
@@ -159,32 +159,38 @@ const FloatingButtons = () => {
             data-testid="location-floating-btn"
             aria-label="Konum"
           >
-            <MapPin className="w-[18px] h-[18px] text-[#bcb1af]" />
+            <MapPin className="floating-fab-icon floating-fab-icon-location" />
           </motion.a>
-          <motion.a
-            href="tel:05323016334"
-            className="floating-fab floating-fab-phone"
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            data-testid="phone-floating-btn"
-            aria-label="Ara"
-          >
-            <Phone className="w-[18px] h-[18px] text-[#bcb1af]" />
-          </motion.a>
-          <motion.a
-            href="https://wa.me/905323016334"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="floating-fab floating-fab-wa"
-            initial={{ opacity: 0, x: 12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            data-testid="whatsapp-floating-btn"
-            aria-label="WhatsApp"
-          >
-            <MessageCircle className="w-5 h-5 text-[#25D366]" />
-          </motion.a>
+          <div className="floating-fab-wrap floating-fab-phone-wrap">
+            <span className="floating-fab-ping floating-fab-ping-phone" aria-hidden="true" />
+            <motion.a
+              href="tel:05323016334"
+              className="floating-fab floating-fab-phone"
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              data-testid="phone-floating-btn"
+              aria-label="Ara"
+            >
+              <Phone className="floating-fab-icon floating-fab-icon-phone" />
+            </motion.a>
+          </div>
+          <div className="floating-fab-wrap floating-fab-wa-wrap">
+            <span className="floating-fab-ping floating-fab-ping-wa" aria-hidden="true" />
+            <motion.a
+              href="https://wa.me/905323016334"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="floating-fab floating-fab-wa"
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              data-testid="whatsapp-floating-btn"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle className="floating-fab-icon floating-fab-icon-wa" />
+            </motion.a>
+          </div>
         </>
       )}
     </AnimatePresence>
@@ -214,10 +220,11 @@ const Header = () => {
         topbar.style.overflow = "hidden";
         topbar.style.paddingTop = "0";
         topbar.style.paddingBottom = "0";
-        mainnav.style.background = "rgba(14, 10, 10, 0.75)";
+        mainnav.style.background = "rgba(10, 6, 6, 0.88)";
         mainnav.style.backdropFilter = "blur(20px)";
         mainnav.style.webkitBackdropFilter = "blur(20px)";
-        mainnav.style.borderBottom = "1px solid rgba(188,177,175,0.08)";
+        mainnav.style.borderBottom = "1px solid rgba(212, 175, 55, 0.15)";
+        mainnav.style.boxShadow = "0 4px 40px rgba(0, 0, 0, 0.6)";
       } else {
         topbar.style.height = `${NAV_TOPBAR_HEIGHT}px`;
         topbar.style.opacity = "1";
@@ -228,6 +235,7 @@ const Header = () => {
         mainnav.style.backdropFilter = "";
         mainnav.style.webkitBackdropFilter = "";
         mainnav.style.borderBottom = "";
+        mainnav.style.boxShadow = "";
       }
     };
     handleScroll();
