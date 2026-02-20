@@ -393,6 +393,7 @@ const HeroSection = () => (
     id="hero"
     className="relative min-h-screen flex items-center justify-center overflow-hidden noise-overlay"
     data-testid="hero-section"
+    aria-label="Gaziantep Kuzu Lahmacun — Üsküdar odun fırını lahmacun"
   >
     <div
       className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
@@ -453,6 +454,7 @@ const HeroSection = () => (
           href="#menu"
           className="hero-btn-secondary"
           data-testid="hero-menu-btn"
+          aria-label="Gaziantep lahmacun menüsünü inceleyin"
         >
           Menüyü İncele
         </a>
@@ -462,8 +464,9 @@ const HeroSection = () => (
           rel="noopener noreferrer"
           className="hero-btn-wa"
           data-testid="hero-whatsapp-btn"
+          aria-label="WhatsApp ile sipariş verin"
         >
-          <span className="w-2 h-2 rounded-full bg-[#25D366]" />
+          <span className="w-2 h-2 rounded-full bg-[#25D366]" aria-hidden="true" />
           WhatsApp Sipariş
         </a>
       </motion.div>
@@ -477,6 +480,7 @@ const HeroSection = () => (
       animate={{ opacity: 1 }}
       transition={{ delay: 1.2 }}
       data-testid="scroll-indicator"
+      aria-label="Menü bölümüne iner"
     >
       <div className="w-px h-8 bg-gradient-to-b from-gaziantep-gold to-transparent" />
       <ChevronDown className="w-5 h-5" />
@@ -622,8 +626,8 @@ const MenuSection = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
         <div className="text-center mb-10">
           <DiamondDivider className="mb-4" />
-          <h2 className="menu-section-title" data-testid="menu-title">MENÜMÜZ</h2>
-          <p className="font-['Cormorant_Garamond'] italic text-[#bcb1af] text-base mt-1">Ustanın Seçkisi</p>
+          <h2 className="menu-section-title" data-testid="menu-title">Gaziantep Lahmacun ve Pide Menüsü</h2>
+          <p className="font-['Cormorant_Garamond'] italic text-[#bcb1af] text-base mt-1">Odun fırınında, ustanın seçkisi</p>
         </div>
 
         <div className="menu-tabs-wrap" data-testid="menu-filters">
@@ -667,7 +671,7 @@ const MenuSection = () => {
           ))}
         </motion.div>
 
-        <Link to="/menu" className="menu-cta-full-menu" data-testid="menu-full-cta">
+        <Link to="/menu" className="menu-cta-full-menu" data-testid="menu-full-cta" aria-label="Gaziantep lahmacun ve pide tam menüsünü görüntüle">
           TÜM MENÜYÜ GÖR →
         </Link>
       </div>
@@ -711,18 +715,18 @@ const SahipBannerSection = () => (
 
 // Galeri — asymmetric masonry grid
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80", alt: "Lahmacun ve pide lezzetleri", span: "2rows 1col" },
-  { src: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600&q=80", alt: "Taş fırında pişen lahmacun", span: "1" },
-  { src: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80", alt: "Taze hazırlanan yemekler", span: "1" },
-  { src: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=900&q=80", alt: "Restoran lezzetleri", span: "landscape" },
-  { src: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80", alt: "Geleneksel tatlar", span: "1" },
-  { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80", alt: "Gaziantep mutfağı", span: "1" },
+  { src: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80", alt: "Üsküdar Gaziantep lahmacun ve taş fırın pide tabağı", span: "2rows 1col" },
+  { src: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600&q=80", alt: "Odun fırınında pişen Gaziantep lahmacun", span: "1" },
+  { src: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80", alt: "Taze hazırlanan lahmacun ve pide", span: "1" },
+  { src: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=900&q=80", alt: "Gaziantep Kuzu Lahmacun restoran lezzetleri Üsküdar", span: "landscape" },
+  { src: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80", alt: "Geleneksel Gaziantep mutfağı tatlar", span: "1" },
+  { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80", alt: "En iyi lahmacun Üsküdar Gaziantep mutfağı", span: "1" },
 ];
 
 const GallerySection = () => (
   <AnimatedSection id="gallery" className="py-16 md:py-24 bg-[#141414] noise-overlay">
     <div className="max-w-6xl mx-auto px-4 md:px-8">
-      <h2 className="gallery-section-title">LEZZETLERİMİZ</h2>
+      <h2 className="gallery-section-title">Üsküdar Gaziantep Lahmacun Lezzetleri</h2>
       <div className="gallery-masonry">
         <div className="gallery-cell gallery-cell-large" data-testid="gallery-img-0">
           <img src={galleryImages[0].src} alt={galleryImages[0].alt} loading="lazy" />
@@ -865,16 +869,16 @@ const ContactSection = () => (
             <p className="text-[#E0E0E0] font-['Inter']">Her gün açık — Gece 02:00'ye kadar</p>
           </div>
           <div className="flex flex-wrap gap-3 pt-4">
-            <a href="tel:05323016334" className="contact-btn" data-testid="contact-call-btn">
-              <Phone className="w-4 h-4" />
+            <a href="tel:05323016334" className="contact-btn" data-testid="contact-call-btn" aria-label="Sipariş için hemen ara">
+              <Phone className="w-4 h-4" aria-hidden="true" />
               Hemen Ara
             </a>
-            <a href="https://wa.me/905323016334" target="_blank" rel="noopener noreferrer" className="contact-btn" data-testid="contact-whatsapp-btn">
-              <MessageCircle className="w-4 h-4" />
+            <a href="https://wa.me/905323016334" target="_blank" rel="noopener noreferrer" className="contact-btn" data-testid="contact-whatsapp-btn" aria-label="WhatsApp ile sipariş ver">
+              <MessageCircle className="w-4 h-4" aria-hidden="true" />
               WhatsApp
             </a>
-            <a href="https://www.instagram.com/gaziantepkuzulahmacun" target="_blank" rel="noopener noreferrer" className="contact-btn" data-testid="contact-instagram-btn">
-              <Instagram className="w-4 h-4" />
+            <a href="https://www.instagram.com/gaziantepkuzulahmacun" target="_blank" rel="noopener noreferrer" className="contact-btn" data-testid="contact-instagram-btn" aria-label="Instagram sayfamız">
+              <Instagram className="w-4 h-4" aria-hidden="true" />
               Instagram
             </a>
           </div>
@@ -888,7 +892,7 @@ const ContactSection = () => (
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Gaziantep Kuzu Lahmacun Konum"
+            title="Gaziantep Kuzu Lahmacun konum — Üsküdar Ünalan harita"
           />
         </div>
       </div>
@@ -912,15 +916,17 @@ const OrderCTASection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#C9A227] text-[#141414] font-semibold text-lg transition-transform hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(201,162,39,0.4)]"
+          aria-label="WhatsApp ile sipariş verin"
         >
-          <MessageCircle className="w-5 h-5" />
+          <MessageCircle className="w-5 h-5" aria-hidden="true" />
           WhatsApp ile Sipariş
         </a>
         <a
           href="tel:05323016334"
           className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-[#C9A227] text-[#E8D8C3] font-semibold text-lg transition-transform hover:scale-[1.03] hover:bg-[#C9A227]/10"
+          aria-label="Sipariş için hemen arayın"
         >
-          <Phone className="w-5 h-5" />
+          <Phone className="w-5 h-5" aria-hidden="true" />
           Hemen Ara
         </a>
       </div>
@@ -959,7 +965,7 @@ const Footer = () => (
 const HomePage = () => (
   <div className="App min-h-screen">
     <Header />
-    <main>
+    <main id="main-content" role="main">
       <HeroSection />
       <FarkimizSection />
       <MenuSection />
@@ -985,7 +991,7 @@ function App() {
           element={
             <div className="App min-h-screen">
               <Header />
-              <main>
+              <main id="main-content" role="main">
                 <MenuPage />
               </main>
               <Footer />

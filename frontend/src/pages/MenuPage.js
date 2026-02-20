@@ -77,6 +77,8 @@ const AnimatedDivider = ({ dividerRef, isVisible, dataKey }) => (
   </div>
 );
 
+const MENU_PAGE_TITLE = "Gaziantep Lahmacun ve Pide Menüsü | Üsküdar | Odun Fırını";
+
 export default function MenuPage() {
   const headerRef = useRef(null);
   const sectionRefs = useRef([]);
@@ -84,6 +86,13 @@ export default function MenuPage() {
   const [visibleSections, setVisibleSections] = useState(new Set());
   const [visibleDividers, setVisibleDividers] = useState(new Set());
   const titleRef = useRef(null);
+
+  useEffect(() => {
+    document.title = MENU_PAGE_TITLE;
+    return () => {
+      document.title = "Gaziantep Kuzu Lahmacun | Odun Fırını Lezzeti | Üsküdar";
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -146,9 +155,9 @@ export default function MenuPage() {
 
         <AnimatedDivider dividerRef={(el) => (dividerRefs.current[0] = el)} isVisible={visibleDividers.has("0")} dataKey="0" />
         <h1 ref={titleRef} className="menu-page-title">
-          MENÜ
+          Gaziantep Lahmacun ve Pide Menüsü
         </h1>
-        <p className="menu-page-subtitle">Ustaların elinden, sofranıza...</p>
+        <p className="menu-page-subtitle">Üsküdar odun fırını — ustaların elinden, sofranıza</p>
         <div className="menu-page-line" />
       </div>
 

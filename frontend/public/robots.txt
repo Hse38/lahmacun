@@ -1,0 +1,6 @@
+# Gaziantep Kuzu Lahmacun
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gaziantepkuzulahmacun.com/sitemap.xml
