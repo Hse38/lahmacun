@@ -53,13 +53,17 @@ module.exports = {
                                 '4': 'hsl(var(--chart-4))',
                                 '5': 'hsl(var(--chart-5))'
                         },
-                        // Custom Restaurant Colors
                         gaziantep: {
-                                red: '#C0392B',
+                                red: '#C41E1E',
+                                'red-bright': '#E8251E',
                                 gold: '#D4AF37',
-                                cream: '#FDF6EC',
-                                dark: '#1A0A00',
-                                muted: '#8C7B75'
+                                copper: '#C08B3E',
+                                cream: '#F5F5F5',
+                                charcoal: '#121212',
+                                surface: '#151515',
+                                elevated: '#1A1A1A',
+                                'text': '#EAEAEA',
+                                'text-muted': '#C4B8A4'
                         }
                 },
                 fontFamily: {

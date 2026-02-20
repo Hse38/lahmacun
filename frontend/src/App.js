@@ -220,7 +220,7 @@ const Header = () => {
         topbar.style.overflow = "hidden";
         topbar.style.paddingTop = "0";
         topbar.style.paddingBottom = "0";
-        mainnav.style.background = "rgba(7, 4, 4, 0.92)";
+        mainnav.style.background = "rgba(18, 18, 18, 0.92)";
         mainnav.style.backdropFilter = "blur(24px)";
         mainnav.style.webkitBackdropFilter = "blur(24px)";
         mainnav.style.borderBottom = "1px solid rgba(212, 175, 55, 0.12)";
@@ -894,7 +894,7 @@ const Footer = () => (
 
 // Home page (landing)
 const HomePage = () => (
-  <div className="App bg-[#181212] min-h-screen">
+  <div className="App min-h-screen">
     <Header />
     <main>
       <HeroSection />
@@ -919,7 +919,7 @@ function App() {
         <Route
           path="/menu"
           element={
-            <div className="App bg-[#181212] min-h-screen">
+            <div className="App min-h-screen">
               <Header />
               <main>
                 <MenuPage />
