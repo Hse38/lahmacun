@@ -360,6 +360,196 @@ img {
   background: var(--accent-red);
 }
 
+/* Homepage menu teaser — bullet list, no prices, CTA to /menu */
+.menu-teaser-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
+}
+@media (max-width: 767px) {
+  .menu-teaser-grid { grid-template-columns: 1fr; }
+}
+.menu-teaser-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  padding: 6px 0;
+  list-style: none;
+}
+.menu-teaser-item::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-red);
+  flex-shrink: 0;
+}
+.menu-cta-full-menu {
+  display: block;
+  text-align: center;
+  margin: 2.5rem auto 0;
+  padding: 16px 48px;
+  border: 1px solid rgba(188, 177, 175, 0.3);
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.menu-cta-full-menu:hover {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+/* Full menu page (/menu) */
+.menu-page {
+  background: #0e0a0a;
+  min-height: 100vh;
+  padding-top: 140px;
+  padding-bottom: 4rem;
+}
+.menu-page-header {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.menu-page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brand-grey);
+  font-size: 0.875rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.2s ease;
+}
+.menu-page-back:hover {
+  color: var(--text-primary);
+}
+.menu-page-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 4rem;
+  letter-spacing: 0.3em;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+  .menu-page-title { font-size: 2.5rem; letter-spacing: 0.15em; }
+}
+.menu-page-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--brand-muted);
+  margin-bottom: 1.5rem;
+}
+.menu-page-line {
+  width: 60px;
+  height: 1px;
+  background: var(--accent-red);
+  margin: 0 auto;
+}
+.menu-page-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0;
+}
+.menu-page-section {
+  margin-bottom: 1rem;
+}
+.menu-page-category-title {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.menu-page-category-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--accent-red);
+  margin: 0.5rem auto 0;
+}
+.menu-page-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 768px) {
+  .menu-page-items { grid-template-columns: 1fr 1fr; }
+}
+.menu-page-item-row {
+  padding: 18px 12px 18px 0;
+  border-bottom: 1px solid rgba(188, 177, 175, 0.05);
+}
+.menu-page-item-main {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.menu-page-item-name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+.menu-page-item-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(188, 177, 175, 0.15);
+  margin: 0 10px;
+  min-width: 8px;
+}
+.menu-page-item-price {
+  color: var(--brand-muted);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.menu-page-item-desc {
+  color: var(--brand-grey);
+  font-size: 0.78rem;
+  font-style: italic;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+.menu-page-footer {
+  text-align: center;
+}
+.menu-page-footer-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--brand-grey);
+  margin-bottom: 0.5rem;
+}
+.menu-page-footer-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--brand-grey);
+  margin-bottom: 1.5rem;
+}
+.menu-page-wa-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--accent-red);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.menu-page-wa-cta:hover {
+  background: var(--accent-red);
+}
+
 /* Hero buttons */
 .hero-btn-secondary {
   padding: 0.75rem 2rem;

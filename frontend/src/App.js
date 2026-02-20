@@ -1,5 +1,6 @@
 import "@/App.css";
 import { useEffect, useState, useRef } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { 
   Phone, 
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./components/ui/sheet";
+import MenuPage from "./pages/MenuPage";
 
 // Menu data
 const menuData = {
@@ -223,16 +225,16 @@ const Header = () => {
   }, []);
 
   const mainNavItems = [
-    { label: "Menü", href: "#menu" },
-    { label: "Hakkımızda", href: "#about" },
-    { label: "Yorumlar", href: "#reviews" },
-    { label: "İletişim", href: "#contact" },
+    { label: "Menü", href: "/menu" },
+    { label: "Hakkımızda", href: "/#about" },
+    { label: "Yorumlar", href: "/#reviews" },
+    { label: "İletişim", href: "/#contact" },
   ];
 
   const allNavItems = [
     ...mainNavItems,
-    { label: "Farkımız", href: "#farkimiz" },
-    { label: "Galeri", href: "#gallery" },
+    { label: "Farkımız", href: "/#farkimiz" },
+    { label: "Galeri", href: "/#gallery" },
   ];
 
   return (
@@ -280,21 +282,21 @@ const Header = () => {
           <div className="nav-main-inner">
             <nav className="nav-main-links">
               {mainNavItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
-                  href={item.href}
+                  to={item.href}
                   className="nav-main-link"
                   data-testid={`nav-${item.label.toLowerCase()}`}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
 
-            <a href="#hero" className="nav-main-brand" data-testid="logo">
+            <Link to="/" className="nav-main-brand" data-testid="logo">
               <img src="/logo.png" alt="Gaziantep Kuzu Lahmacun" className="nav-main-logo" />
               <span className="nav-main-brand-text">Gaziantep Kuzu Lahmacun</span>
-            </a>
+            </Link>
 
             <div className="nav-main-right">
               <a href="tel:05323016334" className="nav-main-cta" data-testid="nav-cta-btn">
@@ -309,15 +311,15 @@ const Header = () => {
                 <SheetContent side="right" className="nav-drawer">
                   <div className="nav-drawer-content">
                     {allNavItems.map((item) => (
-                      <a
+                      <Link
                         key={item.href}
-                        href={item.href}
+                        to={item.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className="nav-drawer-link"
                         data-testid={`mobile-nav-${item.label.toLowerCase()}`}
                       >
                         {item.label}
-                      </a>
+                      </Link>
                     ))}
                     <a
                       href="tel:05323016334"
@@ -497,7 +499,10 @@ const FarkimizSection = () => {
   );
 };
 
-// Menu Section — minimal editorial style
+// Homepage menu section — teaser only (2 categories max, 5 items each, no prices, CTA to /menu)
+const TEASER_MAX_CATEGORIES = 2;
+const TEASER_MAX_ITEMS_PER_CAT = 5;
+
 const MenuSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
@@ -522,25 +527,29 @@ const MenuSection = () => {
     icecekler: "— İÇECEKLER —",
   };
 
-  const getGroups = () => {
+  const getTeaserGroups = () => {
     if (activeCategory === "all") {
-      return Object.entries(menuData).map(([key, items]) => ({ key, header: categoryHeaders[key] || key, items }));
+      return Object.entries(menuData)
+        .slice(0, TEASER_MAX_CATEGORIES)
+        .map(([key, items]) => ({
+          key,
+          header: categoryHeaders[key] || key,
+          items: items.slice(0, TEASER_MAX_ITEMS_PER_CAT),
+        }));
     }
-    const items = menuData[activeCategory] || [];
+    const items = (menuData[activeCategory] || []).slice(0, TEASER_MAX_ITEMS_PER_CAT);
     return [{ key: activeCategory, header: categoryHeaders[activeCategory] || activeCategory, items }];
   };
 
   return (
     <AnimatedSection id="menu" className="py-16 md:py-24 bg-[#231d1d] noise-overlay">
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
-        {/* Editorial header */}
         <div className="text-center mb-10">
           <DiamondDivider className="mb-4" />
           <h2 className="menu-section-title" data-testid="menu-title">MENÜMÜZ</h2>
           <p className="font-['Cormorant_Garamond'] italic text-[#bcb1af] text-base mt-1">Ustanın Seçkisi</p>
         </div>
 
-        {/* Plain text tabs */}
         <div className="menu-tabs-wrap" data-testid="menu-filters">
           {categories.map((cat) => (
             <button
@@ -554,7 +563,6 @@ const MenuSection = () => {
           ))}
         </div>
 
-        {/* Menu by groups — clean rows, no cards */}
         <motion.div
           className="menu-editorial-list"
           variants={staggerContainer}
@@ -562,20 +570,18 @@ const MenuSection = () => {
           animate="visible"
           key={activeCategory}
         >
-          {getGroups().map(({ key, header, items }) => (
+          {getTeaserGroups().map(({ key, header, items }) => (
             <div key={key} className="menu-editorial-group">
               <div className="menu-editorial-category-label">{header}</div>
-              <div className="menu-editorial-grid">
+              <div className="menu-teaser-grid">
                 {items.map((item, index) => (
                   <motion.div
                     key={`${key}-${index}`}
                     variants={fadeInUp}
-                    className="menu-item-row"
+                    className="menu-teaser-item"
                     data-testid={`menu-item-${index}`}
                   >
-                    <span className="menu-item-name">{item.name}</span>
-                    <span className="menu-item-dots" />
-                    <span className="menu-item-price">{item.price}</span>
+                    {item.name}
                   </motion.div>
                 ))}
               </div>
@@ -583,16 +589,9 @@ const MenuSection = () => {
           ))}
         </motion.div>
 
-        {/* CTA */}
-        <a
-          href="https://wa.me/905323016334"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="menu-cta-editorial"
-          data-testid="menu-whatsapp-cta"
-        >
-          Tüm Menü İçin WhatsApp
-        </a>
+        <Link to="/menu" className="menu-cta-full-menu" data-testid="menu-full-cta">
+          TÜM MENÜYÜ GÖR →
+        </Link>
       </div>
     </AnimatedSection>
   );
@@ -846,23 +845,44 @@ const Footer = () => (
   </footer>
 );
 
-// Main App
+// Home page (landing)
+const HomePage = () => (
+  <div className="App bg-[#181212] min-h-screen">
+    <Header />
+    <main>
+      <HeroSection />
+      <FarkimizSection />
+      <MenuSection />
+      <SahipBannerSection />
+      <GallerySection />
+      <ReviewsSection />
+      <ContactSection />
+    </main>
+    <Footer />
+    <FloatingButtons />
+  </div>
+);
+
+// Main App with routing
 function App() {
   return (
-    <div className="App bg-[#181212] min-h-screen">
-      <Header />
-      <main>
-        <HeroSection />
-        <FarkimizSection />
-        <MenuSection />
-        <SahipBannerSection />
-        <GallerySection />
-        <ReviewsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <FloatingButtons />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/menu"
+          element={
+            <div className="App bg-[#181212] min-h-screen">
+              <Header />
+              <main>
+                <MenuPage />
+              </main>
+              <Footer />
+            </div>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
