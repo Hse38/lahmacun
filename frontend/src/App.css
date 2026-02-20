@@ -1321,7 +1321,7 @@ img {
   border-color: var(--accent-red);
   color: var(--text-primary);
 }
-/* Slider / pagination indicators — minimal thin lines */
+/* Slider / pagination indicators */
 .slider-dots,
 .pagination-dots,
 [class*="indicator"],
@@ -1330,17 +1330,17 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
 }
 .slider-dot,
 .reviews-dot,
 [class*="dot"]:not(.menu-teaser-dots):not(.menu-page-item-dots):not(.menu-item-dots),
 [class*="indicator-item"] {
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.15);
-  transition: all 0.4s ease;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
   cursor: pointer;
   border: none;
 }
@@ -1350,12 +1350,14 @@ img {
 [class*="indicator-item"].active {
   width: 40px;
   height: 2px;
+  border-radius: 2px;
   background: #D4AF37;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  transition: all 0.3s ease;
 }
 .slider-dot:hover,
 .reviews-dot:hover {
-  background: rgba(212, 175, 55, 0.3);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* Contact */
@@ -1819,7 +1821,7 @@ img {
   }
   #reviews .flex.justify-center.gap-2.mt-8 {
     margin-top: 32px !important;
-    gap: 6px !important;
+    gap: 8px !important;
   }
 
   /* İletişim */
